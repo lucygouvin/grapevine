@@ -1,0 +1,1 @@
+console.log("search_results_script.js is running")
