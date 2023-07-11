@@ -1,0 +1,1 @@
+console.log("listing_details_script.js is running")
