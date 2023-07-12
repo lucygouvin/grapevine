@@ -40,14 +40,16 @@ function getPollution(lat,long) {
 }
 
 function getRisk(lat,long) {
-    fetch(`https://api.precisely.com/risks/v1/crime/bylocation?latitude=${lat}&longitude=${long}&type=all&includeGeometry=N`,
+    fetch(`https://api.precisely.com/oauth/token`,
     {'Authorization': 'Basic RjdzUEduaEFSR1Q1WEpsbWo3a29CdE5PMGtSUFZhdVo6dE9LMFZsamdjZm5kVjl6dA',
     'Content-Type': 'application/x-www-form-urlencoded',
-    'POST': 'https://api.precisely.com/oauth/token',
+    "Method": "Post",
+    "mode": "cors", // no-cors, *cors, same-origin
     'grant_type':'client_credentials'})
     .then(response => response.json())
     .then(data => {
         console.log(data)
         
-    })
-}
+    })}
+// }https://api.precisely.com/risks/v1/crime/bylocation?latitude=${lat}&longitude=${long}&type=all&includeGeometry=N`,
+// {'Authorization': 'RjdzUEduaEFSR1Q1WEpsbWo3a29CdE5PMGtSUFZhdVo6dE9LMFZsamdjZm5kVjl6dA
