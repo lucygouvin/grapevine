@@ -1,1 +1,30 @@
 /* CSS goes here! */
+:root {
+    --text-color: #a000cd;
+    --light-green: #d5fcc4;
+}
+
+
+
+section {
+    position: relative;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+#logo-size {
+    height: 256px;
+    width: 384px;
+}
+
+h1 {
+    display: block;
+    color: var(--text-color);
+    font-size: 24px;
+}
+
+input {
+    display: block;
+    width: 384px;
+}
