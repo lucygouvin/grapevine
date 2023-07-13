@@ -5,17 +5,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet' />
+
     <!-- Reset CSS -->
     <link rel="stylesheet" href="assets/css/reset.css">
     <!-- Bulma CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <!-- Main CSS -->
     <link rel="stylesheet" href="assets/css/main.css">
+
     <title>Index</title>
 </head>
 
 <body>
     <h1>Welcome to the Index!</h1>
+    <style>
+        body { margin: 0; padding: 0; }
+        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+        </style>
+        </head>
+        <style type="text/css">
+        #info {
+        display: table;
+        position: relative;
+        margin: 0px auto;
+        word-wrap: anywhere;
+        white-space: pre-wrap;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        font-size: 12px;
+        text-align: center;
+        color: #222;
+        background: #fff;
+        }
+        </style>
+        <div id="map"></div>
+        <pre id="info"></pre>
 
     
     <!-- Link to jQuery Core -->
