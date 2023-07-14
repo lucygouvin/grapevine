@@ -32,6 +32,7 @@ map.on('mousemove', (e) => {
 lon = e.lngLat.lng
 lat = e.lngLat.lat
 
+
 });
 
 function getPollution(lat, lon) {
