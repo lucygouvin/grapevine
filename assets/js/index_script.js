@@ -1,5 +1,6 @@
 console.log("index_script.js is running")
 
+
 mapboxgl.accessToken = 'pk.eyJ1IjoibHVjeWdvdXZpbiIsImEiOiJjbGswYzBpN28wNjB5M2tyY3p4N2FkZ2w2In0.j5zYh-z5brFrxATwtomcMg';
 const map = new mapboxgl.Map({
 container: 'map', // container id
@@ -12,12 +13,18 @@ zoom: 9 // starting zoom
 var lon
 var lat
 
+var crimeCategory 
+var crimePercentile
+
 $("#map").on("click", function(e){
     console.log("lat: "+lat)
     console.log("lon: " +lon)
-    var address = getAddress(lat,lon)
-    
-    getWalkScore(lat, lon, address)
+
+    getPollution(lat,lon);
+    getRiskData(lat,lon);
+   
+    // Air Quality Index. Possible values: 1, 2, 3, 4, 5. Where 1 = Good, 2 = Fair, 3 = Moderate, 
+    // 4 = Poor, 5 = Very Poor.
 })
 
 map.on('mousemove', (e) => {
@@ -28,53 +35,66 @@ lat = e.lngLat.lat
 
 });
 
-// Use Geocodify to reverse geocode in order to get an address to use with walk score
-var geocodifyAPI = "926f258af28cb7ac81d46148e4575f02cf08b499"
+function getPollution(lat, lon) {
+    fetch(`http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=59939906650b56969f54c525743fa617`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
 
-function getAddress(lat, lon){
-    if(lat && lon){
-        var geocodifyURL = new URL("https://api.geocodify.com/v2/reverse")
-        geocodifyURL.searchParams.append("api_key", geocodifyAPI)
-        geocodifyURL.searchParams.append("lat", lat)
-        geocodifyURL.searchParams.append("lng", lon)
-
-        fetch(geocodifyURL)
-        .then(function(response){
-            console.log(response)
-            response.json().then(function(data){
-                    var address = data.response.features[0].properties.label
-                    console.log(address)
-                    return(address)
-                })
+            if(data.list[0].main.aqi === 1){
+                alert("Air Quality is Good!")
+            }else if (data.list[0].main.aqi === 2){
+                alert("Air Quality is Fair!")
+            }else if(data.list[0].main.aqi === 3){
+                alert("Air Quality is Moderate!")
+            }else if(data.list[0].main.aqi === 4){
+                alert("Air Quality is Poor!")
+            }else if(data.list[0].main.aqi === 5){
+                alert("Air Quality is Very Poor!")
             }
-        )
-    }
+
+        })
 }
 
-// Take address from Geocodify, pass to Walk Score
-var walkScoreAPI= "a8a76ee5ddc4bc92883fc4122373ec33"
 
-function getWalkScore(lat, lon, address){
-    console.log(lat)
-    console.log(lon)
-    console.log(address)
-    if (lat && lon && address){
-      var walkScoreURL = new URL("https://api.walkscore.com/score");
-      walkScoreURL.searchParams.append("format", "json");
-      walkScoreURL.searchParams.append("address", address);
-      walkScoreURL.searchParams.append("lat", lat);
-      walkScoreURL.searchParams.append("lon", lon);
-      walkScoreURL.searchParams.append("apikey", walkScoreAPI);
-
-      fetch(walkScoreURL).then(function (response) {
-        return response.json()
-        
-      }).then(function (data) {
-        console.log(data);
-      }).catch(function(err){
-        console.log(err)
-      });
+    function getRiskData(data){
+        fetch("https://api.precisely.com/oauth/token", {
+    method: "POST",
+    headers: {
+      "Authorization": "Basic RjdzUEduaEFSR1Q1WEpsbWo3a29CdE5PMGtSUFZhdVo6dE9LMFZsamdjZm5kVjl6dA",
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: ("grant_type=client_credentials") 
+  
+  }).then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    riskResponse(data);
+    console.log(data)
+    })
     }
-
     
-}
+    function riskResponse(data){
+        fetch(`https://api.precisely.com/risks/v1/crime/bylocation?latitude=${lat}8&longitude=${lon}&type=all&includeGeometry=N`,{
+            method: "GET",
+            headers: {
+              "Authorization": "Bearer GHRMGo7wd7bmWhcjY2Xqr9G487Bf",
+            //   "Content-Type": "application/x-www-form-urlencoded",
+            },
+            // body: ("grant_type=client_credentials") 
+          
+          }).then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+
+            console.log(data)
+            console.log(data.themes[0].crimeIndexTheme.indexVariable[0].category)
+            var crimeCategory =data.themes[0].crimeIndexTheme.indexVariable[0].category
+           
+            console.log(data.themes[0].crimeIndexTheme.indexVariable[0].percentile)
+            var crimePercentile = data.themes[0].crimeIndexTheme.indexVariable[0].percentile
+            })
+    }
+

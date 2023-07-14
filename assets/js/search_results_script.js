@@ -40,16 +40,34 @@ function getPollution(lat,long) {
 }
 
 function getRisk(lat,long) {
-    fetch(`https://api.precisely.com/oauth/token`,
-    {'Authorization': 'Basic RjdzUEduaEFSR1Q1WEpsbWo3a29CdE5PMGtSUFZhdVo6dE9LMFZsamdjZm5kVjl6dA',
-    'Content-Type': 'application/x-www-form-urlencoded',
-    "Method": "Post",
-    "mode": "cors", // no-cors, *cors, same-origin
-    'grant_type':'client_credentials'})
-    .then(response => response.json())
-    .then(data => {
-        console.log(data)
-        
-    })}
+    $.ajax('https://api.precisely.com/oauth/token',
+    {
+        // dataType: ‘json’, // type of response data
+        method: 'POST',
+        headers: {
+          'Authorization': "Basic RjdzUEduaEFSR1Q1WEpsbWo3a29CdE5PMGtSUFZhdVo6dE9LMFZsamdjZm5kVjl6dA",
+          'Content-Type': 'application/x-www-form-urlencoded',
+          // ‘Content-Type’: ‘application/x-www-form-urlencoded’,
+        },
+        data: {
+          'grant_type': 'client_credentials',
+        }, // body data type must match “Content-Type” header
+        success: function (data,status,xhr) {   // success callback function
+            console.log(data)
+        },
+        error: function (jqXhr, textStatus, errorMessage) { // error callback
+            console.log(errorMessage)
+        },
+        header:{
+            'Authorization': 'Bearer zvFa7abgBGnwYD3EEEaPvFXdYVrW',
+            GET, https://api.precisely.com/typeahead/v1/locations?latitude={YOUR_LATITUDE}&longitude={YOUR_LONGITUDE}&searchText={YOUR_SEARCH_TEXT}
+        }
+    }); }
 // }https://api.precisely.com/risks/v1/crime/bylocation?latitude=${lat}&longitude=${long}&type=all&includeGeometry=N`,
 // {'Authorization': 'RjdzUEduaEFSR1Q1WEpsbWo3a29CdE5PMGtSUFZhdVo6dE9LMFZsamdjZm5kVjl6dA
+
+// .then(response => response.json())
+// .then(data => {
+//     console.log(data)
+// access token
+"zvFa7abgBGnwYD3EEEaPvFXdYVrW"
