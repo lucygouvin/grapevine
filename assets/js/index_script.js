@@ -1,5 +1,6 @@
 console.log("index_script.js is running");
 
+
 mapboxgl.accessToken =
   "pk.eyJ1IjoibHVjeWdvdXZpbiIsImEiOiJjbGswYzBpN28wNjB5M2tyY3p4N2FkZ2w2In0.j5zYh-z5brFrxATwtomcMg";
   const bounds = [
@@ -21,6 +22,9 @@ map.on("mousemove", (e) => {
   lon = e.lngLat.lng;
   lat = e.lngLat.lat;
 });
+var crimeCategory 
+var crimePercentile
+
 var crimeCategory 
 var crimePercentile
 
