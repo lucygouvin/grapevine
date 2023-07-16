@@ -2,15 +2,16 @@
 body {
     margin: 0;
     padding: 0;
-    display: flex;
+    /* display: flex; */
+}
+button{
+    display: inline;
 }
 
 #map {
-    /* position: absolute; */
-    /* top: 0;
-    bottom: 0; */
-    width: 90%;
-   align: center;
+    width: 80vh;
+    height: 80vh;
+    margin: auto;
 }
 
 #info {
