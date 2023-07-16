@@ -133,13 +133,13 @@ function getPollution(lat, lon) {
     });
 }
 
-// GET CRIME RISK DATA FOR AN AREA
+// GET CRIME RISK PRECISELY API TOKEN
 function getRiskData(data) {
   fetch("https://api.precisely.com/oauth/token", {
     method: "POST",
     headers: {
       Authorization:
-        "Basic RjdzUEduaEFSR1Q1WEpsbWo3a29CdE5PMGtSUFZhdVo6dE9LMFZsamdjZm5kVjl6dA",
+          `Basic RjdzUEduaEFSR1Q1WEpsbWo3a29CdE5PMGtSUFZhdVo6dE9LMFZsamdjZm5kVjl6dA`,
       "Content-Type": "application/x-www-form-urlencoded",
     },
     body: "grant_type=client_credentials",
@@ -153,13 +153,15 @@ function getRiskData(data) {
     });
 }
 
+// GET CRIME RISK DATA FOR AN AREA
 function riskResponse(data) {
+  var riskToken =data.access_token
   fetch(
     `https://api.precisely.com/risks/v1/crime/bylocation?latitude=${lat}8&longitude=${lon}&type=all&includeGeometry=N`,
     {
       method: "GET",
       headers: {
-        Authorization: "Bearer GHRMGo7wd7bmWhcjY2Xqr9G487Bf",
+        Authorization: `Bearer ${riskToken}`,
         //   "Content-Type": "application/x-www-form-urlencoded",
       },
       // body: ("grant_type=client_credentials")
