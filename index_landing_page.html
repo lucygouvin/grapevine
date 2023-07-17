@@ -21,38 +21,78 @@
 
 <body>
 
-<header class="hero">
-    <section class="hero is-primary hero-body container has-text-centered m-0">
-        <figure class="is-inline-block">
-            <img class='mb-5' src="assets/images/grapevine-logo.png">
-        </figure>
-        <h2 class="title has-text-centered">Be In the Know Before You Go</h2>
-        <p class="has-text-centered">GrapeVine allows you to search your destination, and see the
-        information
-        about that location before you
-        arrive so that you are able to plan accordingly.</p>
-    </section>
-</header>
-    
-    <!-- TO DO Replace with dropdown list -->
-    <div class="button-row">
-        <button data-east="77.642256" data-west="77.536856" data-north="13.023577"
-            data-south="12.923210">Bangalore</button>
-        <button data-east="2.228208" data-west="2.11" data-north="41.42" data-south="41.347463">Barcelona</button>
-        <button data-east="13.457198" data-west="13.354201" data-north="52.541755"
-            data-south="52.490569">Berlin</button>
-        <button data-east="-96.737293" data-west="-96.836857" data-north="32.806993"
-            data-south="32.740310">Dallas</button>
-        <button data-east="-0.061048" data-west="-0.169882" data-north="51.520180"
-            data-south="51.484703">London</button>
-        <button data-east="-73.942847" data-west="-74.058204" data-north="40.792027" data-south="40.697607">New
-            York</button>
-        <button data-east="2.46" data-west="2.25" data-north="48.91" data-south="48.80">Paris</button>
-        <button data-east="-122.370076" data-west="-122.483716" data-north="37.810980" data-south="37.732007">San
-            Francisco</button>
-    </div> 
+    <header class="hero">
+        <section class="hero is-primary hero-body container has-text-centered m-0">
+            <figure class="is-inline-block">
+                <img class='mb-5' src="assets/images/grapevine-logo.png">
+            </figure>
+            <h2 class="title has-text-centered">Be In the Know Before You Go</h2>
+            <p class="has-text-centered">GrapeVine allows you to search your destination, and see the
+                information
+                about that location before you
+                arrive so that you are able to plan accordingly.</p>
+        </section>
+    </header>
 
-    <div class="mb-2"id="map"></div>
+    <div class="container is-centered">
+        <div class="dropdown is-hoverable">
+            <div class="dropdown-trigger">
+                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                    <span>Select City</span>
+                    <span class="icon is-small">
+                        <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                </button>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                <div class="dropdown-content">
+                    <div class="dropdown-item">
+                        <a href='#' class class='dropdown-item' data-east="77.642256" data-west="77.536856"
+                            data-north="13.023577" data-south="12.923210">Bangalore</a>
+                    </div>
+                    <hr class="dropdown-divider">
+                    <div class="dropdown-item">
+                        <a href='#' class class='dropdown-item' data-east="2.228208" data-west="2.11" data-north="41.42"
+                            data-south="41.347463">Barcelona</button>
+                        </a>
+                    </div>
+                    <hr class="dropdown-divider">
+                    <div class="dropdown-item">
+                        <a href='#' class class='dropdown-item' data-east="13.457198" data-west="13.354201"
+                            data-north="52.541755" data-south="52.490569">Berlin</a>
+                    </div>
+                    <hr class="dropdown-divider">
+                    <div class="dropdown-item">
+                        <a href='#' class class='dropdown-item' data-east="-96.737293" data-west="-96.836857"
+                            data-north="32.806993" data-south="32.740310">Dallas</a>
+                    </div>
+                    <hr class="dropdown-divider">
+                    <div class="dropdown-item">
+                        <a href='#' class class='dropdown-item' data-east="-0.061048" data-west="-0.169882"
+                            data-north="51.520180" data-south="51.484703">London</a>
+                    </div>
+                    <hr class="dropdown-divider">
+                    <div class="dropdown-item">
+                        <a href='#' class class='dropdown-item' data-east="-73.942847" data-west="-74.058204"
+                            data-north="40.792027" data-south="40.697607">New
+                            York</a>
+                    </div>
+                    <hr class="dropdown-divider">
+                    <div class="dropdown-item">
+                        <a href='#' class class='dropdown-item' data-east="2.46" data-west="2.25" data-north="48.91"
+                            data-south="48.80">Paris</a>
+                    </div>
+                    <hr class="dropdown-divider">
+                    <div class="dropdown-item">
+                        <a href='#' class class='dropdown-item' data-east="-122.370076" data-west="-122.483716"
+                            data-north="37.810980" data-south="37.732007">San
+                            Francisco</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mb-2 mt-6 is-flex-wrap-wrap" id="map"></div>
 
     <footer class="pb-3 pt-3 is-flex-align-items-flex-end is-primary">
         <p class="has-text-centered">GrapeVine 2023</p>

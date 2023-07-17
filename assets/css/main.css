@@ -29,3 +29,9 @@ img {
 .hero{
     min-width: 100%;
 }
+
+.container {
+    align-items:center;
+    width:200px;
+    display:inline;
+}

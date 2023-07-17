@@ -27,7 +27,7 @@ map.on('load', function () {
 
 // CHANGE MAP VIEW
 // Get new bounds from the button that was clicked
-$("button").on("click", function (e) {
+$("a").on("click", function (e) {
   var mapWest = parseFloat(e.target.getAttribute("data-west"));
   var mapEast = parseFloat(e.target.getAttribute("data-east"));
   var mapSouth = parseFloat(e.target.getAttribute("data-south"));
