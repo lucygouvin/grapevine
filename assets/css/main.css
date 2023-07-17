@@ -14,17 +14,18 @@ button{
     margin: auto;
 }
 
-#info {
-    display: table;
-    position: relative;
-    margin: 0px auto;
-    word-wrap: anywhere;
-    white-space: pre-wrap;
-    padding: 10px;
-    border: none;
-    border-radius: 3px;
-    font-size: 12px;
-    text-align: center;
-    color: #222;
-    background: #fff;
+img {
+    height: 200px;
+    width: 220px;
+    border-radius: 50px;
+}
+
+.is-primary {
+    color: #fff;
+    background-color: rgb(78, 33, 119) !important;
+    width: 100vw;
+}
+
+.hero{
+    min-width: 100%;
 }
