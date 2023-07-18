@@ -36,7 +36,7 @@ $("a").on("click", function (e) {
  mapEast = parseFloat(e.target.getAttribute("data-east"));
  mapSouth = parseFloat(e.target.getAttribute("data-south"));
  mapNorth = parseFloat(e.target.getAttribute("data-north"));
- cityName = e.target.text()
+ cityName = e.target.textContent
   var avgLat = (mapSouth + mapNorth) / 2;
   var avgLon = (mapEast + mapWest) / 2;
 
@@ -69,7 +69,7 @@ $("#map").on("click", function (e) {
   localStorage.setItem("latitude",lat);
   localStorage.setItem("longitude",lon) 
   modalDialog()
-  $("#City-Modal").attr("title", cityName)
+  $( "#City-Modal").dialog( "option", "title", cityName)
 });
 
  function modalDialog() {
@@ -149,15 +149,16 @@ function getPollution(lat, lon) {
 
 
 //ACTUAL FUNCTIONALITY BELOW//
-      if (data.list[0].main.aqi === 1) {       
+      if (data.list[0].main.aqi === 1) {     
+        $('#air').text("Air Quality: Good")
       } else if (data.list[0].main.aqi === 2) {
-        alert("Air Quality is Fair!");
+        $('#air').text("Air Quality: Fair")
       } else if (data.list[0].main.aqi === 3) {
-        alert("Air Quality is Moderate!");
+        $('#air').text("Air Quality: Moderate")
       } else if (data.list[0].main.aqi === 4) {
-        alert("Air Quality is Poor!");
+        $('#air').text("Air Quality: Poor")
       } else if (data.list[0].main.aqi === 5) {
-        alert("Air Quality is Very Poor!");
+        $('#air').text("Air Quality: Very Poor")
       }
     });
 }
@@ -208,6 +209,8 @@ function riskResponse(data) {
       console.log(data.themes[0].crimeIndexTheme.indexVariable[0].percentile);
       var crimePercentile =
         data.themes[0].crimeIndexTheme.indexVariable[0].percentile;
+     
+        $("#percentile").text("Crime Rate Percentile: "+ data.themes[0].crimeIndexTheme.indexVariable[0].percentile);
     });
 }
 
