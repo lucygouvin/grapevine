@@ -3,7 +3,10 @@ var lon;
 var lat;
 var crimeCategory;
 var crimePercentile;
-
+var mapNorth = 37.81098;
+var mapWest = -122.483716;
+var mapSouth = 37.732007;
+var mapEast = -122.370076;
 // INSTANTIATE MAP INSTANCE
 mapboxgl.accessToken =
   "pk.eyJ1IjoibHVjeWdvdXZpbiIsImEiOiJjbGswYzBpN28wNjB5M2tyY3p4N2FkZ2w2In0.j5zYh-z5brFrxATwtomcMg";
@@ -28,10 +31,10 @@ map.on('load', function () {
 // CHANGE MAP VIEW
 // Get new bounds from the button that was clicked
 $("a").on("click", function (e) {
-  var mapWest = parseFloat(e.target.getAttribute("data-west"));
-  var mapEast = parseFloat(e.target.getAttribute("data-east"));
-  var mapSouth = parseFloat(e.target.getAttribute("data-south"));
-  var mapNorth = parseFloat(e.target.getAttribute("data-north"));
+ mapWest = parseFloat(e.target.getAttribute("data-west"));
+ mapEast = parseFloat(e.target.getAttribute("data-east"));
+ mapSouth = parseFloat(e.target.getAttribute("data-south"));
+ mapNorth = parseFloat(e.target.getAttribute("data-north"));
   var avgLat = (mapSouth + mapNorth) / 2;
   var avgLon = (mapEast + mapWest) / 2;
 
@@ -61,6 +64,8 @@ $("#map").on("click", function (e) {
   getAuthToken(); //AuthToken for Amadeus stats, automatidally goes to get safety stats 
   getPollution(lat, lon); //Get air pollution data
   getRiskData(lat, lon); //Get crime rate data
+  localStorage.setItem("latitude",lat);
+  localStorage.setItem("longitude",lon) 
   modalDialog()
 });
 
@@ -187,3 +192,32 @@ function riskResponse(data) {
         data.themes[0].crimeIndexTheme.indexVariable[0].percentile;
     });
 }
+
+// Favorite Button Allows User to Save Searches to Local Storage 
+$('.faveBtn').click(function(event){
+  console.log("hello");
+  event.preventDefault;
+
+  console.log(lat)
+  console.log(lon)
+  
+  localStorage.setItem("latitude north",mapNorth);
+  localStorage.setItem("latitude south",mapSouth);
+  localStorage.setItem("longitude east",mapEast);
+  localStorage.setItem("longitude west",mapWest)
+  
+})
+
+// Retrieving from Local Storage and Displaying on UI
+
+if(localStorage.getItem("latitude north") && localStorage.getItem("latitude south") && localStorage.getItem("longitude east") && localStorage.getItem("longitude west")){
+  const bounds = [
+  [localStorage.getItem("longitude west"), localStorage.getItem("latitude south")],
+  [localStorage.getItem("longitude east"),localStorage.getItem("latitude north") ],
+  ]
+  var center = [localStorage.getItem("longitude west") + localStorage.getItem("longitude east") / 2, localStorage.getItem("latitude north") + localStorage.getItem("latitude south")/2];
+  // Reset the map bounds and pan to it
+  map.setMaxBounds(bounds);
+  map.panTo(center);};
+
+
