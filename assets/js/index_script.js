@@ -61,7 +61,12 @@ $("#map").on("click", function (e) {
   getAuthToken(); //AuthToken for Amadeus stats, automatidally goes to get safety stats 
   getPollution(lat, lon); //Get air pollution data
   getRiskData(lat, lon); //Get crime rate data
+  modalDialog()
 });
+
+ function modalDialog() {
+  $( "#City-Modal" ).dialog();
+} ;
 
 // GET AUTHORIZATION TOKEN FOR AMADEUS, THEN GET SAFETY STATS
 function getAuthToken() {
@@ -119,8 +124,9 @@ function getPollution(lat, lon) {
     .then((data) => {
       console.log(data);
 
-      if (data.list[0].main.aqi === 1) {
-        alert("Air Quality is Good!");
+
+//ACTUAL FUNCTIONALITY BELOW//
+      if (data.list[0].main.aqi === 1) {       
       } else if (data.list[0].main.aqi === 2) {
         alert("Air Quality is Fair!");
       } else if (data.list[0].main.aqi === 3) {
