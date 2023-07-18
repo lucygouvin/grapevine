@@ -7,6 +7,7 @@ var mapNorth = 37.81098;
 var mapWest = -122.483716;
 var mapSouth = 37.732007;
 var mapEast = -122.370076;
+var cityName = "San Francisco"
 // INSTANTIATE MAP INSTANCE
 mapboxgl.accessToken =
   "pk.eyJ1IjoibHVjeWdvdXZpbiIsImEiOiJjbGswYzBpN28wNjB5M2tyY3p4N2FkZ2w2In0.j5zYh-z5brFrxATwtomcMg";
@@ -35,6 +36,7 @@ $("a").on("click", function (e) {
  mapEast = parseFloat(e.target.getAttribute("data-east"));
  mapSouth = parseFloat(e.target.getAttribute("data-south"));
  mapNorth = parseFloat(e.target.getAttribute("data-north"));
+ cityName = e.target.text()
   var avgLat = (mapSouth + mapNorth) / 2;
   var avgLon = (mapEast + mapWest) / 2;
 
@@ -67,6 +69,7 @@ $("#map").on("click", function (e) {
   localStorage.setItem("latitude",lat);
   localStorage.setItem("longitude",lon) 
   modalDialog()
+  $("#City-Modal").attr("title", cityName)
 });
 
  function modalDialog() {
@@ -113,13 +116,28 @@ function getSafetyData(lat, lon, token) {
       .then(function (data) {
         console.log(data)
         if (data.data) {
+        
+
+          $("#overall").text("Overall safety score: "+ categorizeData(data.data[0].safetyScores.overall))
+          $("#lgbtq").text("Harm to LGBTQ people "+ categorizeData(data.data[0].safetyScores.lgbtq))
+          $("#medical").text("Illness: "+categorizeData(data.data[0].safetyScores.medical))
+          $("#women").text("Harm to women: "+categorizeData(data.data[0].safetyScores.women))
+          $("#poliFreedom").text("Politcal unrest: "+categorizeData(data.data[0].safetyScores.politicalFreedom))
           console.log(data.data[0].safetyScores);
+
         } else {
           console.log("No data available for this location");
         }
       });
   }
 }
+
+function categorizeData(num){
+  var categories= ["Very Low", "Low", "Moderate", "High", "Very High"]
+  var index = Math.floor(num/20)
+  return categories[index]
+}
+
 // GET AIR POLLUTION FOR AN AREA
 function getPollution(lat, lon) {
   fetch(
