@@ -16,15 +16,15 @@ mapboxgl.accessToken =
 // Define initial bounds of the map
 // When the page first loads, constrain it to San Francisco
 const bounds = [
-  [-122.483716, 37.732007], //West, South coordinates
-  [-122.370076, 37.81098], // East, North coordinates
+  [mapWest, mapNorth], //West, South coordinates
+  [mapEast, mapSouth], // East, North coordinates
 ];
 
 // Instantiate a new Mapbox map
 const map = new mapboxgl.Map({
   container: "map", // container id 
   style: "mapbox://styles/mapbox/streets-v12", // map style
-  center: [-122.426896, 37.7714935], // starting position
+  center: [(mapWest+mapEast)/2, (mapNorth+mapSouth)/2], // starting position
   zoom: 12, // starting zoom
   maxBounds: bounds, // constrain the map to these bounds
 });
@@ -107,8 +107,8 @@ function getAuthToken() {
     // The body of the request contains the credentials for the Amadeus API
     body: new URLSearchParams({
       grant_type: "client_credentials", // The type of OAuth2 grant
-      client_id: "fVizsTLL8V8dE2jGcoq8mj1ETYQ87DY3", // The client ID
-      client_secret: "B7vAx8AQGk1gHpz7", // The client secret
+      client_id: "BbMH5XJupUUcOHxKonQBhuCGjJNbKAao", // The API Key
+      client_secret: "Xb7HbQSJ4LBZmdC9", // The client secret
     }),
   })
     .then(function (response) {
@@ -276,7 +276,7 @@ function riskResponse(data) {
       return response.json();
     })
     .then(function (data) {
-      if (data) {
+      if (data.themes) {
         var crimeCategory =
           data.themes[0].crimeIndexTheme.indexVariable[0].category;
 
