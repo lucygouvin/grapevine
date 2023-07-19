@@ -53,5 +53,14 @@ img {
     display: none;
     flex-direction: row;
     justify-content: space-between;
-    width: 80%
+    width: 80%;
+}
+
+.is-link {
+color:rgb(78, 33, 119) !important;
+font-weight: bold;
+}
+
+.is-outlined {
+    color:rgb(78, 33, 119) !important;
 }
