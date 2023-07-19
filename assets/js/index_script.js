@@ -236,7 +236,7 @@ function riskResponse(data) {
 }
 
 // Favorite Button Allows User to Save Searches to Local Storage
-$(".faveBtn").click(function (event) {
+$("#faveBtn").click(function (event) {
   event.preventDefault;
 
   localStorage.setItem("latitude north", mapNorth);
