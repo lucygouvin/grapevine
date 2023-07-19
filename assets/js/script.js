@@ -293,8 +293,8 @@ function riskResponse(data) {
     });
 }
 
-// Event handler for clicking the favorite button
-$(".faveBtn").click(function (event) {
+// Favorite Button Allows User to Save Searches to Local Storage
+$("#faveBtn").click(function (event) {
   event.preventDefault;
   // Store the current search bounds in local storage
   localStorage.setItem("latitude north", mapNorth);

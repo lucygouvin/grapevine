@@ -75,7 +75,7 @@ img {
     display: none;
     flex-direction: row;
     justify-content: space-between;
-    width: 80%
+    width: 80%;
 }
 
 /* Fixes the footer to the bottom of the viewport */
@@ -100,4 +100,13 @@ footer {
         height: 23%;
         margin: auto;
     }
+}
+
+.is-link {
+color:rgb(78, 33, 119) !important;
+font-weight: bold;
+}
+
+.is-outlined {
+    color:rgb(78, 33, 119) !important;
 }
