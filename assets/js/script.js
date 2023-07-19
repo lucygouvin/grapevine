@@ -315,6 +315,7 @@ $("#faveBtn").click(function (event) {
   localStorage.setItem("latitude south", mapSouth);
   localStorage.setItem("longitude east", mapEast);
   localStorage.setItem("longitude west", mapWest);
+  localStorage.setItem("city name",cityName);
 });
 
 // Check if there are stored search bounds in local storage
@@ -323,7 +324,8 @@ if (
   localStorage.getItem("latitude north") &&
   localStorage.getItem("latitude south") &&
   localStorage.getItem("longitude east") &&
-  localStorage.getItem("longitude west")
+  localStorage.getItem("longitude west") &&
+  localStorage.getItem("city name")
 ) {
   var lsNorth = parseFloat(localStorage.getItem("latitude north"));
   var lsSouth = parseFloat(localStorage.getItem("latitude south"));
@@ -336,6 +338,7 @@ if (
   ];
   var center = [(lsEast + lsWest) / 2, (lsNorth + lsSouth) / 2];
   // Set the maximum bounds of the map and pan to the center
+  cityName = localStorage.getItem("city name");
   map.setMaxBounds(bounds);
   map.panTo(center);
 }
