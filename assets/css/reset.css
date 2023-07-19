@@ -1,39 +1,52 @@
-/* Resets the box size of every element */
+/* Resets the margin, padding, and box sizing of every element to have a consistent look across different browsers */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-   }
-   
-   
-   /* Gives the body element a parent height to compare against */
-   html {
+}
+
+
+/* Sets the height property of the html element to 100% to ensure it fills the entire viewport */
+html {
     height: 100%;
-   }
-   
-   
-   body {
+}
+
+/* Sets the minimum height of the body element to 100%, allowing it to take the full viewport height.
+   Sets the line-height to 1, and font-family to sans-serif as default styling for the text */
+body {
     min-height: 100%;
     line-height: 1;
     font-family: sans-serif;
-   }
-   
-   
-   h1, h2, h3, h4, h5, h6 {
+}
+
+/* Resets the size of all heading elements (h1-h6) to be 100% of the parent font size. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-size: 100%;
-   }
-   
-   
-   /* Matches the font of special elements to the rest of the page */
-   input, select, option, optgroup, textarea, button,
-   pre, code {
+}
+
+
+/* Resets the font size of certain form and code elements to match the default font size of the page (100% of parent size).
+   Also matches their font family to the parent element's font family. */
+input,
+select,
+option,
+optgroup,
+textarea,
+button,
+pre,
+code {
     font-size: 100%;
     font-family: inherit;
-   }
-   
-   
-   /* Removes default bullet points from lists */
-   ol, ul {
+}
+
+
+/* Removes the default bullet points from ordered and unordered lists. */
+ol,
+ul {
     list-style: none;
-   }
-   
+}

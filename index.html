@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- Metadata, Stylesheets and Title -->
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,20 +19,30 @@
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
     <!-- Main CSS -->
     <link rel="stylesheet" href="assets/css/main.css">
-
-    <title>GrapeVine</title>
+    <title>Grapevine</title>
 </head>
 
-<body>
+<body class="is-fullheight">
+    <!-- Start of the body section. "is-fullheight" class is a Bulma class to make the element take the full height of the viewport -->
 
-    <header class="hero">
+    <header class="hero"> <!-- Header section -->
         <section class="hero is-primary hero-body container has-text-centered m-0">
-            <figure class="is-inline-block">
-                <img class='mb-5' src="assets/images/grapevine-logo.png">
-            </figure>
-            <h2 class="title has-text-centered">Be In the Know Before You Go</h2>
-            <p class="has-text-centered">GrapeVine allows you to search your destination, and see the
-                information about that location before you arrive so that you are able to plan accordingly.</p>
+            <!-- Hero section to highlight the main content. "is-primary" class is a Bulma class to apply primary color, "hero-body" class is a Bulma class to style the body of the hero, "container" is a Bulma class for a centered container, "has-text-centered" is a Bulma class to center the text, "m-0" class is a Bulma class to remove margin -->
+
+            <!-- Logo section -->
+            <div>
+                <figure class="is-inline-block">
+                    <img class='image is-96x96 mb-3' src="assets/images/grapevine-logo.png">
+                </figure>
+            </div>
+            <!-- Text section -->
+            <div>
+                <h2 class="title has-text-centered">Be In the Know Before You Go</h2>
+                <!-- Main heading. "title" is a Bulma class to style the title, "has-text-centered" is a Bulma class to center the text -->
+                <p class="has-text-centered">GrapeVine provides a platform to explore and gather information about your
+                    chosen destination ahead of your visit, enabling you to prepare and plan your trip effectively.</p>
+
+            </div>
         </section>
         <div class="mt-4 has-text-centered">
             <button class="button is-link is-outlined is-rounded" id="faveBtn">
@@ -42,19 +54,24 @@
         </div>
     </header>
 
+    <!-- City selection dropdown section -->
     <section class="mt-4 has-text-centered">
         <div class="container">
+            <!-- Dropdown for city selection -->
             <div class="dropdown is-hoverable">
+                <!-- Trigger for the dropdown -->
                 <div class="dropdown-trigger">
                     <button class="button is-medium" aria-haspopup="true" aria-controls="dropdown-menu">
-                        <span>Select City</span>
+                        <span>Select City</span> <!-- Text to show on the button -->
                         <span class="icon is-small">
                             <i class="fas fa-angle-down" aria-hidden="true"></i>
                         </span>
                     </button>
                 </div>
+                <!-- Dropdown menu with city options -->
                 <div class="dropdown-menu" id="dropdown-menu" role="menu">
                     <div class="dropdown-content">
+                        <!-- Dropdown items representing different cities. Each item has data attributes to hold the geo-coordinates of the city -->
                         <div class="dropdown-item is-size-5">
                             <button class="js-modal-trigger" data-target="Bangalore-modal" id="Bangalore"></button>
                             <a href='#' class class='dropdown-item' data-east="77.642256" data-west="77.536856"
@@ -103,10 +120,12 @@
             </div>
         </div>
     </section>
+    <div class="mt-4 is-flex-wrap-wrap" id="map"></div>
 
-    <div class="mb-2 mt-4 is-flex-wrap-wrap" id="map"></div>
-
-    <div id="City-Modal" title="" class="is-primary is-flex is-flex-direction-row is-justify-content-space-between p-3">
+    <!-- Modal for the city details -->
+    <div id="City-Modal" title=""
+        class="is-primary is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-space-between p-3">
+        <!-- Overall and safety stats sections -->
         <div class="summary is-flex is-flex-direction-column">
             <p class="is-size-6 has-text-weight-bold">Overall:</p>
             <p id="overall"></p>
@@ -119,19 +138,14 @@
             <p id="medical"></p>
             <p id="women"></p>
             <p id="poliFreedom"></p>
-
         </div>
     </div>
 
-
-
-
-
-
-
+    <!-- Footer -->
     <footer class="pb-3 pt-3 is-flex-align-items-flex-end is-primary">
-        <p class="has-text-centered">GrapeVine 2023</p>
+        <p class="has-text-centered">© 2023 Grapevine | All rights reserved.</p>
     </footer>
+
     <!-- Link to jQuery Core -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- Link to jQuery UI -->
@@ -139,8 +153,7 @@
     <!-- Link to Mapbox Script -->
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js'></script>
     <!-- Link to JavaScript -->
-    <script src="assets/js/index_script.js"></script>
-
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>
