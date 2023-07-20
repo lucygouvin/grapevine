@@ -39,7 +39,7 @@
             <div>
                 <h2 class="title has-text-centered">Be In the Know Before You Go</h2>
                 <!-- Main heading. "title" is a Bulma class to style the title, "has-text-centered" is a Bulma class to center the text -->
-                <p class="has-text-centered">GrapeVine provides a platform to explore and gather information about your
+                <p class="has-text-centered">Grapevine provides a platform to explore and gather safety information about your
                     chosen destination ahead of your visit, enabling you to prepare and plan your trip effectively.</p>
 
             </div>
@@ -62,7 +62,7 @@
                 <!-- Trigger for the dropdown -->
                 <div class="dropdown-trigger">
                     <button class="button is-medium" aria-haspopup="true" aria-controls="dropdown-menu">
-                        <span>Select City</span> <!-- Text to show on the button -->
+                        <span class="current-city">Select City</span> <!-- Text to show on the button -->
                         <span class="icon is-small">
                             <i class="fas fa-angle-down" aria-hidden="true"></i>
                         </span>
@@ -72,8 +72,7 @@
                 <div class="dropdown-menu" id="dropdown-menu" role="menu">
                     <div class="dropdown-content">
                         <!-- Dropdown items representing different cities. Each item has data attributes to hold the geo-coordinates of the city -->
-                        <div class="dropdown-item is-size-5">
-                            <button class="js-modal-trigger" data-target="Bangalore-modal" id="Bangalore"></button>
+                        <div class="dropdown-item is-size-5 "id="Bangalore">
                             <a href='#' class class='dropdown-item' data-east="77.642256" data-west="77.536856"
                                 data-north="13.023577" data-south="12.923210">Bangalore</a>
                         </div>
