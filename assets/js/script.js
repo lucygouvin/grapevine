@@ -104,7 +104,7 @@ $("#map").on("click", function (e) {
   $("#women").html("Harm to women: ");
   $("#poliFreedom").html("Politcal unrest: ");
   $("#percentile").text("Crime rate percentile: ");
-  $("#air").html("Air ");
+  $("#air").html("Air Quality: ");
   $( "#City-Modal" ).dialog( "option", "position", { my: "center bottom-10%", at: "center bottom", of: $("#map") });
 
 });
@@ -223,7 +223,7 @@ function categorizeData(num) {
 function getPollution(lat, lon) {
   // Fetch air pollution data from OpenWeatherMap's Air Pollution API
   fetch(
-    `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=59939906650b56969f54c525743fa617`
+    `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=59939906650b56969f54c525743fa617`
   )
     .then((response) => response.json()) // Parse the response as JSON
     .then((data) => {
