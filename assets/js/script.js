@@ -37,7 +37,7 @@ map.on("load", function () {
 // Initialize city modal dialog with custom position and width
 $(function () {
   $("#City-Modal").dialog({
-    position: { my: "center bottom-100%", at: "center bottom", of: $("#map") },
+    position: { my: "center bottomxs", at: "center bottom", of: $("#map") },
     width: screen.width < 550 ? "50%" : 550,
     closeText: "X",
   });
