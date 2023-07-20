@@ -1,30 +1,27 @@
 // Declare global variables
 var lon; // longitude
 var lat; // latitude
-var crimeCategory; // category of crime
-var crimePercentile; // crime percentile
-var mapNorth = 37.81098; // northern boundary of the map
-var mapWest = -122.483716; // western boundary of the map
-var mapSouth = 37.732007; // southern boundary of the map
-var mapEast = -122.370076; // eastern boundary of the map
-var cityName = "San Francisco"; // current city name
+var mapNorth = 37.81098; // northern boundary of the map, set to San Francisco by default
+var mapWest = -122.483716; // western boundary of the map, set to San Francisco by default
+var mapSouth = 37.732007; // southern boundary of the map, set to San Francisco by default
+var mapEast = -122.370076; // eastern boundary of the map, set to San Francisco by default
+var cityName = "San Francisco"; // current city name, set to San Francisco by default
 
 // API key for Mapbox
 mapboxgl.accessToken =
   "pk.eyJ1IjoibHVjeWdvdXZpbiIsImEiOiJjbGswYzBpN28wNjB5M2tyY3p4N2FkZ2w2In0.j5zYh-z5brFrxATwtomcMg";
 
 // Define initial bounds of the map
-// When the page first loads, constrain it to San Francisco
 const bounds = [
-  [-122.483716, 37.732007], //West, South coordinates
-  [-122.370076, 37.81098], // East, North coordinates
+  [mapWest, mapNorth], //West, South coordinates
+  [mapEast, mapSouth], // East, North coordinates
 ];
 
 // Instantiate a new Mapbox map
 const map = new mapboxgl.Map({
   container: "map", // container id 
   style: "mapbox://styles/mapbox/streets-v12", // map style
-  center: [-122.426896, 37.7714935], // starting position
+  center: [(mapWest+mapEast)/2, (mapNorth+mapSouth)/2], // starting position
   zoom: 12, // starting zoom
   maxBounds: bounds, // constrain the map to these bounds
 });
@@ -37,11 +34,11 @@ map.on("load", function () {
 // Initialize city modal dialog with custom position and width
 $(function () {
   $("#City-Modal").dialog({
-    position: { my: "center bottom-100%", at: "center bottom", of: $("#map") },
     width: screen.width < 550 ? "50%" : 550,
     closeText: "X",
   });
   $(".ui-dialog").css("display", "none");
+  $(".current-city").text(cityName)
 });
 
 // Attach click event listener to the anchor tags
@@ -54,6 +51,7 @@ $("a").on("click", function (e) {
   mapSouth = parseFloat(e.target.getAttribute("data-south"));
   mapNorth = parseFloat(e.target.getAttribute("data-north"));
   cityName = e.target.textContent;
+  $("#City-Modal").dialog("close")
 
   // Compute average latitude and longitude
   var avgLat = (mapSouth + mapNorth) / 2;
@@ -69,6 +67,8 @@ $("a").on("click", function (e) {
   // Reset the map bounds and pan to it
   map.setMaxBounds(bounds);
   map.panTo(center);
+  $(".current-city").text(cityName)
+
 });
 
 // GET LATITUDE AND LONGITUDE
@@ -91,12 +91,22 @@ $("#map").on("click", function (e) {
 
   // Open the city modal dialog
   $("#City-Modal").dialog({
-    position: { my: "center bottom-100%", at: "center bottom", of: $("#map") },
     title: cityName,
   });
 
-  $("#City-Modal").dialog("open")
+  // Wipe out any existing data
+  $("#City-Modal").dialog("open");
   $(".ui-dialog").css("display", "block");
+  $(".likelihoodHeader").html("Likelihood of harm:");
+  $("#overall").html("Overall risk score: ");
+  $("#lgbtq").html("Harm to LGBTQ people: ");
+  $("#medical").html("Illness: ");
+  $("#women").html("Harm to women: ");
+  $("#poliFreedom").html("Politcal unrest: ");
+  $("#percentile").text("Crime rate percentile: ");
+  $("#air").html("Air ");
+  $( "#City-Modal" ).dialog( "option", "position", { my: "center bottom-10%", at: "center bottom", of: $("#map") });
+
 });
 
 // A function to get the authorization token from Amadeus API
@@ -107,8 +117,8 @@ function getAuthToken() {
     // The body of the request contains the credentials for the Amadeus API
     body: new URLSearchParams({
       grant_type: "client_credentials", // The type of OAuth2 grant
-      client_id: "fVizsTLL8V8dE2jGcoq8mj1ETYQ87DY3", // The client ID
-      client_secret: "B7vAx8AQGk1gHpz7", // The client secret
+      client_id: "oiztQ5wutvMo2bYGBUf9FPAYShxGJkIv", // The API Key
+      client_secret: "kopPWdA6zAdxn0Ky", // The client secret
     }),
   })
     .then(function (response) {
@@ -154,7 +164,7 @@ function getSafetyData(lat, lon, token) {
           $(".safetyStats").css("display", "block");
           // Fill in the safety stats for each category
           $("#overall").html(
-            "Overall safety score: " +
+            "Overall risk score: " +
             categorizeData(data.data[0].safetyScores.overall)
           );
           $("#lgbtq").html(
@@ -195,7 +205,6 @@ function categorizeData(num) {
   if (index === 0) {
     return text.fontcolor("green");
   }
-
   if (index === 1) {
     return text.fontcolor("#add633");
   }
@@ -276,13 +285,7 @@ function riskResponse(data) {
       return response.json();
     })
     .then(function (data) {
-      if (data) {
-        var crimeCategory =
-          data.themes[0].crimeIndexTheme.indexVariable[0].category;
-
-        var crimePercentile =
-          data.themes[0].crimeIndexTheme.indexVariable[0].percentile;
-
+      if (data.themes) {
         $("#percentile").text(
           "Crime Rate Percentile: " +
           data.themes[0].crimeIndexTheme.indexVariable[0].percentile
@@ -301,6 +304,7 @@ $("#faveBtn").click(function (event) {
   localStorage.setItem("latitude south", mapSouth);
   localStorage.setItem("longitude east", mapEast);
   localStorage.setItem("longitude west", mapWest);
+  localStorage.setItem("city name",cityName);
 });
 
 // Check if there are stored search bounds in local storage
@@ -309,7 +313,8 @@ if (
   localStorage.getItem("latitude north") &&
   localStorage.getItem("latitude south") &&
   localStorage.getItem("longitude east") &&
-  localStorage.getItem("longitude west")
+  localStorage.getItem("longitude west") &&
+  localStorage.getItem("city name")
 ) {
   var lsNorth = parseFloat(localStorage.getItem("latitude north"));
   var lsSouth = parseFloat(localStorage.getItem("latitude south"));
@@ -322,6 +327,7 @@ if (
   ];
   var center = [(lsEast + lsWest) / 2, (lsNorth + lsSouth) / 2];
   // Set the maximum bounds of the map and pan to the center
+  cityName = localStorage.getItem("city name");
   map.setMaxBounds(bounds);
   map.panTo(center);
 }
