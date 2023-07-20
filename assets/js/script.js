@@ -1,20 +1,17 @@
 // Declare global variables
 var lon; // longitude
 var lat; // latitude
-var crimeCategory; // category of crime
-var crimePercentile; // crime percentile
-var mapNorth = 37.81098; // northern boundary of the map
-var mapWest = -122.483716; // western boundary of the map
-var mapSouth = 37.732007; // southern boundary of the map
-var mapEast = -122.370076; // eastern boundary of the map
-var cityName = "San Francisco"; // current city name
+var mapNorth = 37.81098; // northern boundary of the map, set to San Francisco by default
+var mapWest = -122.483716; // western boundary of the map, set to San Francisco by default
+var mapSouth = 37.732007; // southern boundary of the map, set to San Francisco by default
+var mapEast = -122.370076; // eastern boundary of the map, set to San Francisco by default
+var cityName = "San Francisco"; // current city name, set to San Francisco by default
 
 // API key for Mapbox
 mapboxgl.accessToken =
   "pk.eyJ1IjoibHVjeWdvdXZpbiIsImEiOiJjbGswYzBpN28wNjB5M2tyY3p4N2FkZ2w2In0.j5zYh-z5brFrxATwtomcMg";
 
 // Define initial bounds of the map
-// When the page first loads, constrain it to San Francisco
 const bounds = [
   [mapWest, mapNorth], //West, South coordinates
   [mapEast, mapSouth], // East, North coordinates
@@ -37,11 +34,11 @@ map.on("load", function () {
 // Initialize city modal dialog with custom position and width
 $(function () {
   $("#City-Modal").dialog({
-    position: { my: "center bottomxs", at: "center bottom", of: $("#map") },
     width: screen.width < 550 ? "50%" : 550,
     closeText: "X",
   });
   $(".ui-dialog").css("display", "none");
+  $(".current-city").text(cityName)
 });
 
 // Attach click event listener to the anchor tags
@@ -70,6 +67,8 @@ $("a").on("click", function (e) {
   // Reset the map bounds and pan to it
   map.setMaxBounds(bounds);
   map.panTo(center);
+  $(".current-city").text(cityName)
+
 });
 
 // GET LATITUDE AND LONGITUDE
@@ -92,24 +91,21 @@ $("#map").on("click", function (e) {
 
   // Open the city modal dialog
   $("#City-Modal").dialog({
-    position: { my: "center bottom-100%", at: "center bottom", of: $("#map") },
     title: cityName,
   });
 
+  // Wipe out any existing data
   $("#City-Modal").dialog("open");
   $(".ui-dialog").css("display", "block");
   $(".likelihoodHeader").html("Likelihood of harm:");
   $("#overall").html("Overall risk score: ");
-
   $("#lgbtq").html("Harm to LGBTQ people: ");
   $("#medical").html("Illness: ");
-
   $("#women").html("Harm to women: ");
   $("#poliFreedom").html("Politcal unrest: ");
-
   $("#percentile").text("Crime rate percentile: ");
-
   $("#air").html("Air ");
+  $( "#City-Modal" ).dialog( "option", "position", { my: "center bottom-10%", at: "center bottom", of: $("#map") });
 
 });
 
@@ -209,7 +205,6 @@ function categorizeData(num) {
   if (index === 0) {
     return text.fontcolor("green");
   }
-
   if (index === 1) {
     return text.fontcolor("#add633");
   }
@@ -291,12 +286,6 @@ function riskResponse(data) {
     })
     .then(function (data) {
       if (data.themes) {
-        var crimeCategory =
-          data.themes[0].crimeIndexTheme.indexVariable[0].category;
-
-        var crimePercentile =
-          data.themes[0].crimeIndexTheme.indexVariable[0].percentile;
-
         $("#percentile").text(
           "Crime Rate Percentile: " +
           data.themes[0].crimeIndexTheme.indexVariable[0].percentile
