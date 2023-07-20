@@ -28,36 +28,37 @@
     <header class="hero"> <!-- Header section -->
         <section class="hero is-primary hero-body container has-text-centered m-0">
             <!-- Hero section to highlight the main content. -->
-            
+
             <!-- Columns div to allow inline elements -->
-            <div class="columns is-vcentered is-mobile">
+            <div class="columns is-vcentered">
                 <!-- Logo section -->
                 <div class="column">
-                    <figure class>
-                        <img class='image is-96x96' src="assets/images/grapevine-logo.png">
+                    <figure class="is-inline-block">
+                        <img class='image is-96x96' src="assets/images/Grapevine-Official-logo.png">
                     </figure>
                 </div>
-                
+
                 <!-- Text section -->
                 <div class="row">
                     <h2 class="title has-text-centered">Be In the Know Before You Go</h2>
                     <!-- Main heading -->
                     <p class>GrapeVine provides a platform to explore and gather information about your
-                        chosen destination ahead of your visit, enabling you to prepare and plan your trip effectively.</p>
+                        chosen destination ahead of your visit, enabling you to prepare and plan your trip effectively.
+                    </p>
                 </div>
             </div> <!-- End of Columns div -->
-            
+
         </section>
     </header>
-    
-        <div class="mt-4 has-text-centered">
-            <button class="button is-link is-outlined is-rounded" id="faveBtn">
-                <span class="icon">
-                    <i class="fas fa-star fa-spin" style="color: #4e2177;"></i>
-                </span>
-                <span>Favorite</span>
-            </button>
-        </div>
+
+    <div class="mt-4 has-text-centered">
+        <button class="button is-link is-outlined is-rounded" id="faveBtn">
+            <span class="icon">
+                <i class="fas fa-star fa-spin" style="color: #4e2177;"></i>
+            </span>
+            <span>Favorite</span>
+        </button>
+    </div>
     </header>
 
     <!-- City selection dropdown section -->
@@ -78,7 +79,7 @@
                 <div class="dropdown-menu" id="dropdown-menu" role="menu">
                     <div class="dropdown-content">
                         <!-- Dropdown items representing different cities. Each item has data attributes to hold the geo-coordinates of the city -->
-                        <div class="dropdown-item is-size-5 "id="Bangalore">
+                        <div class="dropdown-item is-size-5 " id="Bangalore">
                             <a href='#' class class='dropdown-item' data-east="77.642256" data-west="77.536856"
                                 data-north="13.023577" data-south="12.923210">Bangalore</a>
                         </div>
