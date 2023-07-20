@@ -16,6 +16,10 @@ body {
 /* Specifies that the buttons should be displayed inline */
 button {
     display: inline;
+    color: purple;
+    background-color: whitesmoke;
+    padding: 3px;
+    border-radius: 8px;
 }
 
 /* Styles for the map container - width is set to 90% of its container, height is set to 45% of its container, and centered by margin */
@@ -73,6 +77,8 @@ img {
 /* Sets the dialog box to not display by default, flex direction, justification, and width */
 .ui-dialog {
     display: none;
+    border-radius: 25px;
+    overflow: hidden;
     flex-direction: row;
     justify-content: space-between;
     width: 80%;
