@@ -21,10 +21,10 @@ Though our main feature currently involves providing extensive city information,
 
 ### APIs Utilized:
 
-Mapbox API - Interactive map generation
-OpenWeatherMap API - Air quality information
-Precisely API - Crime rate data
-Amadeus API - Safety scores
+1. Mapbox API - Interactive map generation
+2. OpenWeatherMap API - Air quality information
+3. Precisely API - Crime rate data
+4. Amadeus API - Safety scores
 
 ### CSS Framework:
 
@@ -32,7 +32,9 @@ Bulma
 
 ## Screenshot
 
-[Grapevine](./assets/images/)
+[Grapevine Landing Page](./assets/images/Grapevine-landing-page.jpeg)
+
+[Grapevine Modal](./assets/images/Grapevine-modal.jpeg)
 
 ## Link to the Deployed Application
 
