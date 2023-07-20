@@ -54,6 +54,7 @@ $("a").on("click", function (e) {
   mapSouth = parseFloat(e.target.getAttribute("data-south"));
   mapNorth = parseFloat(e.target.getAttribute("data-north"));
   cityName = e.target.textContent;
+  $("#City-Modal").dialog("close")
 
   // Compute average latitude and longitude
   var avgLat = (mapSouth + mapNorth) / 2;
@@ -95,8 +96,21 @@ $("#map").on("click", function (e) {
     title: cityName,
   });
 
-  $("#City-Modal").dialog("open")
+  $("#City-Modal").dialog("open");
   $(".ui-dialog").css("display", "block");
+  $(".likelihoodHeader").html("Likelihood of harm:");
+  $("#overall").html("Overall risk score: ");
+
+  $("#lgbtq").html("Harm to LGBTQ people: ");
+  $("#medical").html("Illness: ");
+
+  $("#women").html("Harm to women: ");
+  $("#poliFreedom").html("Politcal unrest: ");
+
+  $("#percentile").text("Crime rate percentile: ");
+
+  $("#air").html("Air ");
+
 });
 
 // A function to get the authorization token from Amadeus API
@@ -154,7 +168,7 @@ function getSafetyData(lat, lon, token) {
           $(".safetyStats").css("display", "block");
           // Fill in the safety stats for each category
           $("#overall").html(
-            "Overall safety score: " +
+            "Overall risk score: " +
             categorizeData(data.data[0].safetyScores.overall)
           );
           $("#lgbtq").html(
