@@ -117,8 +117,8 @@ function getAuthToken() {
     // The body of the request contains the credentials for the Amadeus API
     body: new URLSearchParams({
       grant_type: "client_credentials", // The type of OAuth2 grant
-      client_id: "BbMH5XJupUUcOHxKonQBhuCGjJNbKAao", // The API Key
-      client_secret: "Xb7HbQSJ4LBZmdC9", // The client secret
+      client_id: "oiztQ5wutvMo2bYGBUf9FPAYShxGJkIv", // The API Key
+      client_secret: "kopPWdA6zAdxn0Ky", // The client secret
     }),
   })
     .then(function (response) {
