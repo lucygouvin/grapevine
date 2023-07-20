@@ -1,37 +1,112 @@
-/* CSS goes here! */
+/* Prevents the vertical scrolling of the page */
+html {
+    overflow-y: hidden;
+}
+
+
+/* Sets the default style for the body tag. 
+   No margins and paddings, sets the height to fill the viewport */
 body {
     margin: 0;
     padding: 0;
-    /* display: flex; */
+    height: 100vh;
+    /* display: flex; //This line is currently commented out and not affecting the layout */
 }
-button{
+
+/* Specifies that the buttons should be displayed inline */
+button {
     display: inline;
 }
 
+/* Styles for the map container - width is set to 90% of its container, height is set to 45% of its container, and centered by margin */
 #map {
-    width: 80vh;
-    height: 80vh;
+    width: 90%;
+    height: 45%;
     margin: auto;
 }
 
+/* Image size constraints */
 img {
     height: 200px;
     width: 220px;
-    border-radius: 50px;
+    /* border-radius: 50px; //This line is currently commented out and not affecting the image style */
 }
 
+/* Overriding the Bulma's is-primary class color and setting width to 100% of viewport width */
 .is-primary {
     color: #fff;
     background-color: rgb(78, 33, 119) !important;
     width: 100vw;
 }
 
-.hero{
+/* Ensuring the hero block takes up at least 100% of the viewport width */
+.hero {
     min-width: 100%;
 }
 
+/* Padding for the hero body */
+.hero-body {
+    padding: 1.5rem;
+}
+
+/* Sets the container width, aligns its child items to center, and displays them inline */
 .container {
-    align-items:center;
-    width:200px;
-    display:inline;
+    align-items: center;
+    width: 200px;
+    display: inline;
+}
+
+/* Styles for the widget header - background color, flex direction, justification, padding, font size, and weight */
+.ui-widget-header {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Sets the dialog box to not display by default, flex direction, justification, and width */
+.ui-dialog {
+    display: none;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+}
+
+/* Fixes the footer to the bottom of the viewport */
+footer {
+    position: fixed;
+    bottom: 0;
+}
+
+/* Sets the map width, height, and margin for screens with max height of 844px */
+@media screen and (max-height: 844px) {
+    #map {
+        width: 90%;
+        height: 35%;
+        margin: auto;
+    }
+}
+
+/* Sets the map width, height, and margin for screens with max height of 667px */
+@media screen and (max-height: 667px) {
+    #map {
+        width: 90%;
+        height: 23%;
+        margin: auto;
+    }
+}
+
+.is-link {
+color:rgb(78, 33, 119) !important;
+font-weight: bold;
+}
+
+.is-outlined {
+    color:rgb(78, 33, 119) !important;
 }

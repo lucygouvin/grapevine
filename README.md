@@ -2,32 +2,31 @@
 
 ## Description
 
-Grapevine is an innovative app designed to revolutionize the house hunting experience in Philadelphia. Our purpose is to provide prospective real estate buyers and renters with comprehensive property history information, aiding them in making well-informed decisions.
+Grapevine is a cutting-edge application designed to transform the way you explore global cities. Our mission is to provide users with comprehensive information about their chosen travel destination before they arrive, allowing them to plan their trips effectively and efficiently.
 
-Utilizing data integration from Zillow and the City of Philadelphia’s public records through the OpenDataPhilly API, Grapevine furnishes users with extensive details about available properties. From traditional property attributes such as size and price to historical data like crime rates, presence of asbestos or bedbugs, and building code violations, we've got you covered.
+Grapevine employs a number of APIs, including Mapbox for dynamic, interactive maps and a proprietary city information API to furnish users with extensive details about selected cities. This data can include information like overall city ratings, safety stats, climate, and much more, ensuring you're in the know before you go.
 
-Grapevine leverages the Bulma CSS Framework for a clean, modern, and user-friendly interface that enhances navigation and user trust.
+Leveraging the Bulma CSS Framework and Mapbox GL JS for map generation, Grapevine presents a clean, modern, and user-friendly interface that makes city exploration a breeze.
 
-Minimum Viable Product (MVP)
+### Main Features:
 
-1. Search (HTML Page 1): When a user searches for a neighborhood within Philadelphia, the system fetches available Zillow listings for that area.
-2. Listings Display (HTML Page 2): Users are presented with information about available listings, including pictures, square footage, number of bedrooms and bathrooms, and pricing.
-3. Property History (HTML Page 3 or Modal): When a user selects a listing, they are presented with comprehensive property history information from OpenDataPhilly. This could include details like type of parking available, crime history in the area, presence of asbestos or bedbugs, and any building code violations recorded for the property.
+1. Search: When a user selects a city from the dropdown menu, the system fetches data about that location.
+2. City Information Display: The fetched data is displayed, providing the user with comprehensive information about their selected city. This could include details like overall city ratings, safety stats, climate, and more.
+3. Interactive Map: An interactive Mapbox map is displayed based on the selected city, giving the user a visual perspective of the location.
 
-While our MVP is focused on providing property history for Philadelphia, the potential to expand Grapevine's functionality and geographic coverage is immense. Stay tuned for updates as we continue to grow and improve our offerings!
+Though our main feature currently involves providing extensive city information, Grapevine's functionality and coverage have a vast potential for expansion. Keep an eye out for updates as we continue to grow and enhance our offerings!
 
-APIs Utilized
+### APIs Utilized:
 
-Zillow API
-OpenDataPhilly API
-
-CSS Framework
+Mapbox API
+Proprietary city information API
+CSS Framework:
 
 Bulma
 
 ## Screenshot
 
-![Grapevine](./assets/images/)
+[Grapevine](./assets/images/)
 
 ## Link to the Deployed Application
 
