@@ -30,11 +30,11 @@ Though our main feature currently involves providing extensive city information,
 
 Bulma
 
-## Screenshot
+## Screenshots
 
-[Grapevine Landing Page](./assets/images/Grapevine-landing-page.jpeg)
+![Grapevine Landing Page](./assets/images/Grapevine-landing-page.jpeg)
 
-[Grapevine Modal](./assets/images/Grapevine-modal.jpeg)
+![Grapevine Modal](./assets/images/Grapevine-modal.jpeg)
 
 ## Link to the Deployed Application
 
